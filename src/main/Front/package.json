@@ -1,5 +1,5 @@
 {
-  "name": "first-app",
+  "name": "Galpi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,8 +12,10 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "axios": "^1.9.0",
+    "bootstrap": "^5.3.6",
     "http-proxy-middleware": "^3.0.5",
     "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2",
@@ -42,5 +44,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7"
   }
 }
