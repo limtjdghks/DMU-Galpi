@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import './App.css';
+import './assets/styles/App.css';
 import { api } from './AxiosInstance';
 
 function App() {
