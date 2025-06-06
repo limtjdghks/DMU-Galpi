@@ -1,20 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import './assets/styles/App.css';
-import { api } from './AxiosInstance';
+import './assets/styles/App.css'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import Header from './components/layout/Header'
+import MainPage from './pages/MainPage'
+import LoginPage from './pages/LoginPage'
+import RecordPage from './pages/RecordPage'
 
 function App() {
-  const [message, setMessage] = useState<any[]>([])
-  useEffect(() => {
-    api.get('/api/hello').then(
-      (res) => {setMessage(res.data)}
-    )
-  },[])
-  return (
-    <div className="App">
-      <Button >{message}</Button>
-    </div>
-  );
+	return (
+		<div className='h-screen w-screen'>
+			<BrowserRouter>
+				<Content />
+			</BrowserRouter>
+		</div>
+	)
 }
 
-export default App;
+export default App
+
+function Content() {
+	const location = useLocation()
+	const hideHeader = ['/login']
+
+	return (
+		<>
+			{!hideHeader.includes(location.pathname) && <Header />}
+			<Routes>
+				<Route path='/' element={<MainPage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/record' element={<RecordPage />} />
+			</Routes>
+		</>
+	)
+}
