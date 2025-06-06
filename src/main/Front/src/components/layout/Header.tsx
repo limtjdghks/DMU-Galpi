@@ -1,17 +1,20 @@
 import {JSX} from "react";
+import { Link } from 'react-router-dom'
 
-const Header = ():JSX.Element => {
-    return (
-			<div className='flex justify-between px-20 shadow-2xl h-20 items-center bg-white z-10 relative'>
-				<div className='flex flex-row items-center gap-8 '>
-					<p className='text-[#78A043] text-[30px] font-bold'>GALPI</p>
-					<p>나의 기록</p>
-				</div>
-				<div>
-					<p>로그인</p>
-				</div>
+const Header = (): JSX.Element => {
+	return (
+		<div className='relative z-10 flex h-20 items-center justify-between bg-white px-20 shadow-2xl'>
+			<div className='flex flex-row items-center gap-8'>
+				<Link className='text-[30px] font-bold text-[#78A043]' to={'/'}>
+					GALPI
+				</Link>
+				<p>나의 기록</p>
 			</div>
-		)
+			<div>
+				<Link to={'/login'}>로그인</Link>
+			</div>
+		</div>
+	)
 }
 
 export default Header
