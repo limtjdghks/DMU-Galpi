@@ -1,10 +1,11 @@
 import {JSX} from "react";
+import { Link } from 'react-router-dom'
 
 const LoginPage = ():JSX.Element => {
     return (
 			<div className='flex size-full items-center justify-center'>
 				<div className='h-[60vh] w-[35vw] rounded-[10%] bg-MainColor'>
-					<div className='flex h-full items-center justify-center'>
+					<div className='flex h-full flex-col items-center justify-center'>
 						<form className='flex flex-col items-center gap-20' id='login'>
 							<label htmlFor='username'>
 								<p className='text-[18px] font-bold'>아이디</p>
@@ -18,6 +19,7 @@ const LoginPage = ():JSX.Element => {
 								로그인
 							</button>
 						</form>
+						<Link to={'/signup'}>회원가입</Link>
 					</div>
 				</div>
 			</div>

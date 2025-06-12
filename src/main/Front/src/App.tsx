@@ -4,6 +4,7 @@ import Header from './components/layout/Header'
 import MainPage from './pages/MainPage'
 import LoginPage from './pages/LoginPage'
 import RecordPage from './pages/RecordPage'
+import SignUpPage from './pages/SignUpPage'
 
 function App() {
 	return (
@@ -19,7 +20,7 @@ export default App
 
 function Content() {
 	const location = useLocation()
-	const hideHeader = ['/login']
+	const hideHeader = ['/login', '/signup']
 
 	return (
 		<>
@@ -27,6 +28,7 @@ function Content() {
 			<Routes>
 				<Route path='/' element={<MainPage />} />
 				<Route path='/login' element={<LoginPage />} />
+				<Route path='/signup' element={<SignUpPage />} />
 				<Route path='/record' element={<RecordPage />} />
 			</Routes>
 		</>
