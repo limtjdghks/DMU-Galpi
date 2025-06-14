@@ -1,0 +1,9 @@
+DB_URL:
+  localhost:3306/galpi
+DB_USERNAME:
+  root
+DB_PASSWORD:
+  admin
+
+JWT_SECRET:
+  wlSWkdjfudnstlzmfltzl
