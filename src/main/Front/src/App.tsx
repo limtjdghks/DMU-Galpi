@@ -33,7 +33,7 @@ function Content() {
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/signup' element={<SignUpPage />} />
 				<Route path='/record' element={<RecordPage />} />
-				<Route path='/list' element={<BookList />} />
+				<Route path='/booklist' element={<BookList />} />
 			</Routes>
 		</>
 	)

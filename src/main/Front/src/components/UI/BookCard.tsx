@@ -1,4 +1,4 @@
-import { JSX } from 'react'
+import {JSX} from 'react'
 import Book from './Book'
 
 interface props {
@@ -17,7 +17,7 @@ const BookCard = ({ title, tag }: props): JSX.Element => {
 
 			{/* 책 이미지 */}
 			<div className='absolute left-[40%] top-0 z-10 -translate-x-1/2'>
-				<Book />
+				<Book imgSrc='123' />
 			</div>
 		</div>
 	)
