@@ -1,18 +1,19 @@
 package com.seonghwan.project.user.entity;
 
-import com.seonghwan.project.user.dto.UserDTO;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -25,17 +26,15 @@ public class User {
     @Column
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column
+    private boolean activated;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Auth auth;
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")}
+    )
+    private Set<Authority> authorities;
 
-    @Builder
-    public User(String userId, String name, String password, Role role) {
-        this.userId = userId;
-        this.name = name;
-        this.password = password;
-        this.role = role;
-    }
 }

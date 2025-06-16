@@ -1,20 +1,24 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/galpi
+    username: root
+    password: admin
   thymeleaf:
     cache: false
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL57Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false
     show-sql: true
     hibernate:
       ddl-auto: update
 
+  sql:
+    init:
+      mode: embedded
+
 jwt:
-  secret: ${JWT_SECRET}
+  secret: Hqp+soI1UXDpLTo6YHj5dRnFKqJ/vx7TDzKXWczh0cWkLoHyqkI7J4T2VYfpYeWXfjhZ3Ke7pyiNQxPbzD2r0Q==
   access-token-time: 3600000
   refresh-token-time: 86400000

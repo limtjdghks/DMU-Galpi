@@ -1,30 +1,40 @@
 package com.seonghwan.project.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.seonghwan.project.user.entity.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@ToString
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-    private long id;
-    private String userid;
+
+    @NotNull
     private String name;
+    @NotNull
+    private String userId;
+    @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private String role;
 
-    public static UserDTO toUserDTO(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setUserid(user.getUserId());
-        userDTO.setName(user.getName());
-        userDTO.setPassword(user.getPassword());
-        userDTO.setRole(user.setRole());
+    private Set<AuthorityDTO> authorities;
 
-        return userDTO;
+    public static UserDTO from(User user) {
+        if(user == null) {return null;}
+
+        return UserDTO.builder()
+                .userId(user.getUserId())
+                .name(user.getName())
+                .password(user.getPassword())
+                .authorities(user.getAuthorities().stream()
+                        .map(authority -> AuthorityDTO.builder().authority(authority.getAuthorityName()).build())
+                        .collect(Collectors.toSet()))
+                .build();
     }
 }
