@@ -1,7 +1,7 @@
-import { JSX, useEffect } from 'react'
+import {JSX, useEffect} from 'react'
 import Book from '../components/UI/Book'
 import RecordBoard from '../components/UI/RecordBoard'
-import { useModalOpenStore } from '../store/Store'
+import {useModalOpenStore} from '../store/Store'
 import Modal from '../components/layout/Modal'
 import Recording from '../components/UI/Recording'
 
@@ -31,7 +31,8 @@ const RecordPage = (): JSX.Element => {
 					</div>
 				</div>
 			</div>
-			<div className='mt-20 w-full border-t-2 border-black'>{/* 한줄긋기 */}</div>
+			{/* 한줄긋기 */}
+			<div className='mt-20 w-full border-t-2 border-black'/>
 			<div className='mt-8'>
 				{/*나의 기록 부분 */}
 				<div className='flex justify-between'>
