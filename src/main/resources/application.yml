@@ -20,7 +20,7 @@ spring:
 
 jwt:
   secret: Hqp+soI1UXDpLTo6YHj5dRnFKqJ/vx7TDzKXWczh0cWkLoHyqkI7J4T2VYfpYeWXfjhZ3Ke7pyiNQxPbzD2r0Q==
-  access-token-time: 3600000
+  access-token-time: 36000000
   refresh-token-time: 86400000
 
 aladin:
