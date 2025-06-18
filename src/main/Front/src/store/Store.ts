@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { BookState, ModalState } from './types'
+import { BookState, DetailState, ModalState } from './types'
 
 export const useBookStore = create<BookState>()((set) => ({
 	id: 0,
@@ -15,4 +15,13 @@ export const useModalOpenStore = create<ModalState>()((set) => ({
 	setModalOpen: (state) => {
 		set(() => ({ modalOpen: state }))
 	},
+}))
+
+export const useDetailStore = create<DetailState>((set) => ({
+	book: null,
+	setBook: (book) => set({ book }),
+	setDetail: (partial) =>
+		set((state) => ({
+			book: state.book ? { ...state.book, ...partial } : state.book,
+		})),
 }))
