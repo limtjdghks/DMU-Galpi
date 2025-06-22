@@ -46,7 +46,7 @@ public class SecurityConfig {
                 // 접근 제한 설정
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/user","/api/signup", "/api/login", "/api/status").permitAll()
-                        .requestMatchers("/api/book/search").permitAll()
+                        .requestMatchers("/api/book/search", "/api/book/bestsellers").permitAll()
                         .anyRequest().authenticated() // 지정한 요청 제외, 권한 인증 필요함
                 );
 

@@ -68,4 +68,24 @@ public class BookController {
         ResponseEntity<Map> response = restTemplate.getForEntity(uri, Map.class);
         return ResponseEntity.ok(response.getBody());
     }
+
+    @GetMapping("/bestsellers")
+    public ResponseEntity<?> getBestSellers() {
+        URI uri = UriComponentsBuilder.newInstance()
+                .scheme(SCHEME)
+                .host(HOST)
+                .path(BASE_PATH + "/ItemList.aspx")
+                .queryParam("ttbkey", ttbKey)
+                .queryParam("QueryType", "Bestseller")
+                .queryParam("MaxResults", 4)
+                .queryParam("start", 1)
+                .queryParam("SearchTarget", "Book")
+                .queryParam("output", "js")
+                .queryParam("Version", "20131101")
+                .build()
+                .toUri();
+
+        ResponseEntity<Map> response = restTemplate.getForEntity(uri, Map.class);
+        return ResponseEntity.ok(response.getBody());
+    }
 }
