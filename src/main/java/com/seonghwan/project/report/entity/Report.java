@@ -1,5 +1,6 @@
 package com.seonghwan.project.report.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seonghwan.project.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,10 +31,10 @@ public class Report {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

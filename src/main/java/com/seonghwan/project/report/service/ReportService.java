@@ -7,7 +7,10 @@ import com.seonghwan.project.user.entity.User;
 import com.seonghwan.project.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -31,11 +34,27 @@ public class ReportService {
         return reportRepository.save(report);
     }
 
-    public Report getReport(String bookId, String userId) {
+    public List<Report> getReport(String bookId, String userId) {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
-        return reportRepository.findByBookIdAndUser_Id(bookId, user.getId())
-                .orElseThrow(() -> new NoSuchElementException("독후감을 찾을 수 없습니다."));
+        return reportRepository.findAllByUser_IdAndBookId(user.getId(), bookId);
+    }
+
+    @Transactional
+    public void updateReport(Long id, ReportDTO dto, String userId) {
+        Report report = reportRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("해당 독후감이 존재하지 않습니다."));
+
+        report.setContent(dto.getContent());
+        report.setCreatedAt(LocalDateTime.now());
+    }
+
+    @Transactional
+    public void deleteReport(Long id, String userId) {
+        Report report = reportRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("해당 독후감이 존재하지 않습니다."));
+
+        reportRepository.delete(report);
     }
 }

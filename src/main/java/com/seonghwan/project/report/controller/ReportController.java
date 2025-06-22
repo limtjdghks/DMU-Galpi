@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/report")
 @RequiredArgsConstructor
@@ -28,7 +30,28 @@ public class ReportController {
         String userId = SecurityUtil.getCurrentUserName()
                 .orElseThrow(() -> new RuntimeException("인증정보가 없습니다."));
 
-        Report report = reportService.getReport(bookId, userId);
+        List<Report> report = reportService.getReport(bookId, userId);
+        List<ReportDTO> response = report.stream()
+                .map(ReportDTO::new)
+                .toList();
         return ResponseEntity.ok().body(report);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateReport(@PathVariable Long id, @RequestBody ReportDTO dto) {
+        String userId = SecurityUtil.getCurrentUserName()
+                .orElseThrow(() -> new RuntimeException("인증정보가 없습니다."));
+
+        reportService.updateReport(id, dto, userId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteReport(@PathVariable Long id) {
+        String userId = SecurityUtil.getCurrentUserName()
+                .orElseThrow(() -> new RuntimeException("인증정보가 없습니다."));
+
+        reportService.deleteReport(id, userId);
+        return ResponseEntity.ok().build();
     }
 }
