@@ -8,9 +8,10 @@ interface props {
 		content: string
 	}
 	mode: 'create' | 'edit'
+	onSuccess: () => void
 }
 
-const Recording = ({ report, mode }: props): JSX.Element => {
+const Recording = ({ report, mode, onSuccess }: props): JSX.Element => {
 	const setModalOpen = useModalOpenStore((state) => state.setModalOpen)
 	const { book } = useDetailStore()
 	const [content, setContent] = useState<string>(report?.content || '')
@@ -31,8 +32,7 @@ const Recording = ({ report, mode }: props): JSX.Element => {
 				})
 				alert('독후감 수정 성공')
 			}
-			setModalOpen(false)
-			window.location.reload()
+			onSuccess()
 		} catch (e: any) {
 			alert(`독후감 ${mode === 'create' ? '작성' : '수정'} 에러`)
 			console.log(e)

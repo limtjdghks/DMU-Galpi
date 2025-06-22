@@ -14,9 +14,10 @@ interface Report {
 interface props {
 	report: Report[]
 	onEdit: (report: Report) => void
+	onSuccess: () => void
 }
 
-const RecordBoard = ({ report, onEdit }: props): JSX.Element => {
+const RecordBoard = ({ report, onEdit, onSuccess }: props): JSX.Element => {
 	const setModalOpen = useModalOpenStore((state) => state.setModalOpen)
 
 	if (!report.length) {
@@ -27,7 +28,7 @@ const RecordBoard = ({ report, onEdit }: props): JSX.Element => {
 		try {
 			await api.delete(`/api/report/delete/${id}`)
 			alert('독후감이 삭제되었습니다.')
-			window.location.reload()
+			onSuccess()
 		} catch (e: any) {
 			alert('삭제 실패')
 			console.log(e)

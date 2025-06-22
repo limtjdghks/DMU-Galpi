@@ -45,7 +45,6 @@ const SignUpPage = ():JSX.Element => {
                                     <input id='username' type='text' className='mt-2 h-8 w-56 rounded-lg px-2 outline outline-2 outline-black'
 									onChange={(e) => setUserId(e.target.value)} />
                                 </label>
-                                <button className="bg-BtnColor1 w-20 h-10 rounded-lg ml-4"> 중복 확인 </button>
                             </div>
 							<label htmlFor='password'>
 								<p className='text-[18px] font-bold'>비밀번호</p>

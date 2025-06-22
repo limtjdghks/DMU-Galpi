@@ -1,11 +1,13 @@
 import React, {JSX, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {api} from '../AxiosInstance'
+import {useAuth} from '../hooks/AuthContext'
 
 const LoginPage = (): JSX.Element => {
 	const [userId, setUserId] = useState<string>()
 	const [password, setPassword] = useState<string>()
 	const navigate = useNavigate()
+	const { refreshAuth } = useAuth()
 
 	const handleLogin = async (e?: React.MouseEvent<HTMLButtonElement>) => {
 		e?.preventDefault()
@@ -23,6 +25,8 @@ const LoginPage = (): JSX.Element => {
 				},
 				{ withCredentials: true }
 			)
+
+			await refreshAuth()
 
 			console.log('로그인 성공')
 			navigate('/')
@@ -42,6 +46,9 @@ const LoginPage = (): JSX.Element => {
 		<div className='flex size-full items-center justify-center'>
 			<div className='h-[60vh] w-[35vw] rounded-[10%] bg-MainColor'>
 				<div className='flex h-full flex-col items-center justify-center'>
+					<Link className='text-[30px] font-bold text-[#78A043]' to={'/'}>
+						GALPI
+					</Link>
 					<div className='flex flex-col items-center gap-20' id='login'>
 						<label htmlFor='username'>
 							<p className='text-[18px] font-bold'>아이디</p>
