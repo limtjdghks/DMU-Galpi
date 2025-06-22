@@ -3,6 +3,7 @@ package com.seonghwan.project.user.controller;
 import com.seonghwan.project.jwt.JwtTokenProvider;
 import com.seonghwan.project.user.dto.TokenDTO;
 import com.seonghwan.project.user.dto.UserLoginDTO;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -57,5 +58,28 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE, accessCookie.toString())
                 .header(HttpHeaders.SET_COOKIE, refreshCookie.toString())
                 .body("로그인 성공");
+    }
+
+    //로그아웃
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        ResponseCookie accessToken = ResponseCookie.from("accessToken", "")
+                .httpOnly(true)
+                .sameSite("Lax")
+                .path("/")
+                .maxAge(0)
+                .build();
+
+        ResponseCookie refreshToken = ResponseCookie.from("refreshToken", "")
+                .httpOnly(true)
+                .sameSite("Lax")
+                .path("/")
+                .maxAge(0)
+                .build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, accessToken.toString())
+                .header(HttpHeaders.SET_COOKIE, refreshToken.toString())
+                .build();
     }
 }
