@@ -1,5 +1,6 @@
-import { create } from 'zustand'
-import { BookState, DetailState, ModalState } from './types'
+import {create} from 'zustand'
+import type {BestSeller, Stat} from './types'
+import {BookState, DetailState, ModalState} from './types'
 
 export const useBookStore = create<BookState>()((set) => ({
 	id: 0,
@@ -24,4 +25,16 @@ export const useDetailStore = create<DetailState>((set) => ({
 		set((state) => ({
 			book: state.book ? { ...state.book, ...partial } : state.book,
 		})),
+}))
+
+export const useStatStore = create<Stat.StatState>((set) => ({
+	genreStats: [],
+	monthlyStats: [],
+	setGenreStats: (data) => set({ genreStats: data }),
+	setMonthlyStats: (data) => set({ monthlyStats: data }),
+}))
+
+export const useBestSellerStore = create<BestSeller.BestSellerState>((set) => ({
+	data: null,
+	setData: (data) => set({ data }),
 }))

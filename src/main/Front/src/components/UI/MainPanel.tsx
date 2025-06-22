@@ -1,4 +1,4 @@
-import React, { JSX } from 'react'
+import React, {JSX} from 'react'
 
 interface props {
 	children: React.ReactNode
@@ -11,7 +11,7 @@ const MainPanel = ({ children, width, height, title }: props): JSX.Element => {
 	return (
 		<div className='rounded-xl bg-white p-4 shadow-2xl' style={{ width, height }}>
 			<p className='text-[18px] font-bold'>{title}</p>
-			<div className='mt-4'>{children}</div>
+			<div className='mt-2'>{children}</div>
 		</div>
 	)
 }

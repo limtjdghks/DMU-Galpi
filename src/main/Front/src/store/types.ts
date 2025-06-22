@@ -27,3 +27,37 @@ export interface DetailState {
 	setBook: (book: BookDetail) => void
 	setDetail: (partial: Partial<BookDetail>) => void
 }
+
+export namespace Stat {
+	interface GenreData {
+		name: string
+		value: number
+	}
+
+	interface MonthlyData {
+		month: string
+		count: number
+	}
+
+	export interface StatState {
+		genreStats: GenreData[]
+		monthlyStats: MonthlyData[]
+		setGenreStats: (data: GenreData[]) => void
+		setMonthlyStats: (data: MonthlyData[]) => void
+	}
+}
+
+export namespace BestSeller {
+	interface BestSellerBook {
+		title: string
+		tag: string
+		cover: string
+		isbn13: string
+	}
+
+	export interface BestSellerState {
+		data: BestSellerBook | null
+		setData: (data:BestSellerBook) => void
+	}
+}
+
